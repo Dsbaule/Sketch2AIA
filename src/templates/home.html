@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-div px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <p class="lead">Agora você pode automaticamente gerar o código App Inventor de wireframes rapidinho a partir dos seus sketches desenhados à mão.</p>
+</div>
+<div class="container-fluid">
+    <div class="row mx-auto text-center">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            <div class="card-deck text-center">
+            <div class="card mb-4 shadow-sm">
+                  <img class="img-fluid" src="{{url_for('static', filename='SketchExample.png')}}" alt="" loading="lazy">
+              <div class="card-body">
+                  <h1 style="color: #4A86E8;">1</h1>
+                  <p class="lead">Fotografe seus sketchs dos interfaces do seu app e faça o upload.</p>
+              </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                  <img class="img-fluid" src="{{url_for('static', filename='AIAExample.png')}}" alt="" loading="lazy">
+              <div class="card-body">
+                  <h1 style="color: #4A86E8;">2</h1>
+                  <p class="lead">Faça o download do código .aia para o seu computador e depois importe no App Inventor  para continuar o desenvolvimento do seu app.</p>
+              </div>
+            </div>
+            </div>
+            <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Vamos lá?</a>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+  </div>
+{% endblock %}
