@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-div px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <div class="container-fluid">
+        <div class="row mx-auto text-center">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <p class="lead">Selecione sua tela principal abaixo:</p>
+                <p class="lead">(Aproveite para verificar se os Sketches estão corretos)</p>
+                <div class="card-group text-center">
+                    {% for i in range(sketchList|length) %}
+                        <div class="card mb-4 border-light shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title"> {{i}} </h5>
+                            </div>
+                            <img src="{{url_for('viewImage', code=code, filename=sketchList[i])}}" height="300" width="auto" class="card-img-bottom">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row mx-auto text-center">
+                    <div class="col">
+                    </div>
+                    <div class="col-7">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Tela Principal</label>
+                          </div>
+                          <select class="custom-select" id="inputGroupSelect01">
+                            {% for i in range(sketchList|length) %}
+                            <option value={{sketchList[i]}}>{{i}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Deseja usar EscolheLista ou ListaSuspensa?</label>
+                          </div>
+                          <select class="custom-select" id="inputGroupSelect01">
+                            <option selected value="1">EscolheLista</option>
+                            <option value="2">ListaSuspensa</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+                <div class="row mx-auto text-center">
+                    <div class="col">
+                    </div>
+                    <div class="col-6">
+                        <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Finalizar</a>
+                        <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #8B0000;">Cancelar</a>
+                    </div>
+                    <div class="col">
+                            <p class="lead"> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
