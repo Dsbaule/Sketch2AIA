@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="main-div px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-
+<div class="container-fluid  px-3 py-3 pt-md-3 pb-md-3 mx-auto text-center">
+    <div class="row mx-auto text-center">
+        <div class="col">
+        </div>
+        <div class="col-3">
+            <img class="img-fluid p-3" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
+            <p class="lead">Já tem um código para seu Sketch? Digite abaixo:</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Código do Sketch" aria-label="Código" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="button-addon2" style="background-color: #4A86E8;">Enviar</button>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
 </div>
 {% endblock %}

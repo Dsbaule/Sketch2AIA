@@ -1,11 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="main-div px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    {% if code is None %}
-        <h1>File Not Found</h1>
-    {% else %}
-        <h1>Download, code:</h1>
-        <h1>{{code}}</h1>
-    {% endif %}
+    <div class="container-fluid">
+        <div class="row mx-auto text-center">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <p class="lead">Seu código:</p>
+                <h1>{{code}}</h1>
+                <p class="lead">Detectamos os seguintes componentes:</p>
+                <div class="card-group text-center p-1">
+                    {% for i in range(imageList|length) %}
+                        <div class="card mb-4 border-light shadow-sm">
+                            <h5 class="card-title mt-1"> {{i}} </h5>
+                            <img src="{{url_for('viewImage', code=code, filename=imageList[i])}}" height="300" width="auto" class="card-img-bottom">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row mx-auto text-center">
+                    <div class="col">
+                    </div>
+                    <div class="col-7">
+                        <a href="{{url_for('getAIA', code=code)}}" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Download</a>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

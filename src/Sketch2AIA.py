@@ -1,5 +1,5 @@
-import os
-from flask import Flask, request, render_template, send_from_directory, redirect, url_for
+import glob, os
+from flask import Flask, request, render_template, send_from_directory, redirect, url_for, send_file
 
 import string, random
 
@@ -30,8 +30,32 @@ def newsketch():
 
 @app.route("/download/")
 @app.route("/download/<code>")
-def download(code=None):
-    return render_template("download.html", code=code)
+def downloadPage(code=None):
+    if code is None:
+        return render_template("getCode.html")
+    else:
+        fileDirectory = os.path.join(APP_ROOT, 'files/')
+        targetDirectory = os.path.join(fileDirectory, code + '/')
+
+        print(os.path.join(targetDirectory, '*.jpg'))
+
+        imageList=list()
+        for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
+            imageList.append(os.path.basename(image))
+
+        return render_template("download.html", code=code, imageList=imageList)
+
+@app.route("/download/<code>/aia")
+def getAIA(code=None):
+    if code is None:
+        return render_template("error.html")
+
+    fileDirectory = os.path.join(APP_ROOT, 'files/')
+    targetDirectory = os.path.join(fileDirectory, code + '/')
+    try:
+        return send_file(targetDirectory + "meu_projeto.aia", attachment_filename='meu_projeto.aia')
+    except Exception as e:
+        return render_template("error.html")
 
 @app.route("/upload", methods=["POST"])
 def upload():

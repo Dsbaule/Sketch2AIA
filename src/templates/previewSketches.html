@@ -8,12 +8,10 @@
             <div class="col-6">
                 <p class="lead">Selecione sua tela principal abaixo:</p>
                 <p class="lead">(Aproveite para verificar se os Sketches estão corretos)</p>
-                <div class="card-group text-center">
+                <div class="card-group text-center p-1">
                     {% for i in range(sketchList|length) %}
                         <div class="card mb-4 border-light shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"> {{i}} </h5>
-                            </div>
+                            <h5 class="card-title mt-1"> {{i}} </h5>
                             <img src="{{url_for('viewImage', code=code, filename=sketchList[i])}}" height="300" width="auto" class="card-img-bottom">
                         </div>
                     {% endfor %}
@@ -48,8 +46,25 @@
                 <div class="row mx-auto text-center">
                     <div class="col">
                     </div>
-                    <div class="col-6">
-                        <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Finalizar</a>
+                    <div class="col-6 mb-3">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="background-color: #4A86E8;">
+                          Finalizar
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Gerando AIA...</h5>
+                              </div>
+                              <div class="modal-body">
+                                   <img class="img-fluid" height="30" width="auto" src="{{url_for('static', filename='RobotLoadingIcon.gif')}}" alt="" loading="lazy">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #8B0000;">Cancelar</a>
                     </div>
                     <div class="col">
