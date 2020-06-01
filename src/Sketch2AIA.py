@@ -86,4 +86,4 @@ def viewImage(filename='', code=''):
 
 
 if __name__ == "__main__":
-    app.run(port=4555, debug=True)
+    app.run(host='0.0.0.0', port=4555, debug=True)
