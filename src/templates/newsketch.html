@@ -1,49 +1,96 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="main-div px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <div class="container-fluid">
-        <div class="row mx-auto text-center">
-            <div class="col-sm">
-            </div>
-            <div class="col-sm">
-                <div class="card-deck text-center">
-                    <div class="card mb-4 border-light shadow-sm">
-                        <img class="img-fluid" src="{{url_for('static', filename='SketchExample.png')}}" alt=""
-                             loading="lazy">
-                        <div class="card-body">
-                            <h1 style="color: #4A86E8;">1</h1>
-                            <p class="lead">Faça sketches de cada tela do seu App seguindo os padrões para cada
-                                componente:</p>
-                        </div>
-                        <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button"
-                           style="background-color: #4A86E8;">Padrões</a>
-                    </div>
-                    <div class="card mb-4 border-light shadow-sm">
-                        <img class="img-fluid" src="{{url_for('static', filename='SketchExample.png')}}" alt=""
-                             loading="lazy">
-                        <div class="card-body">
-                            <h1 style="color: #4A86E8;">2</h1>
-                            <p class="lead">Fotografe cada tela separada.</p>
-                        </div>
-                    </div>
-                    <div class="card mb-4 border-light shadow-sm">
-                        <img class="img-fluid" src="{{url_for('static', filename='SketchExample.png')}}" alt=""
-                             loading="lazy">
-                        <div class="card-body">
-                            <h1 style="color: #4A86E8;">3</h1>
-                            <p class="lead">Faça envio de todas as fotos clicando no botão abaixo:</p>
-                        </div>
-                        <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" hidden="hidden">
-                            <input id="file-picker" type="file" name="sketches" accept=".jpg" multiple>
-                        </form>
-                        <button type="button" class="btn btn-lg btn-primary" id="upload_button" style="background-color: #4A86E8;">Enviar Fotos</a>
-                    </div>
+<div class="container">
+    <div class="row mx-auto text-center mt-3 mb-3">
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='CompleteAppSketchExample.png')}}" alt="" loading="lazy">
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">1</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">Faça sketches de cada tela do seu App seguindo os padrões para cada componente</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <a href="/newsketch" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;">Como desenhar Sketches</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='TakingPictureExample.png')}}" alt="" loading="lazy">
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">2</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">Fotografe cada tela separada</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='UploadExample.png')}}" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">3</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">Faça envio de todas as fotos no botão abaixo (Máximo de 6 fotos)</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" hidden="hidden">
+                        <input id="file-picker" type="file" name="sketches" accept=".jpg" multiple>
+                    </form>
+                    <button type="button" class="btn btn-lg btn-primary" id="upload_button" style="background-color: #4A86E8;">Enviar Fotos</a>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Número de fotos além do permitido!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <div class="container">
+              <img class="img mx-auto d-block mb-4" height="300" width="auto" src="{{url_for('static', filename='RobotError.png')}}" alt="" loading="lazy">
+              <p class="text-center justify-content-center">Máximo de 6 fotos.</p>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" style="background-color: #4A86E8;" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -52,7 +99,11 @@
     };
 
     document.getElementById("file-picker").onchange = function() {
-        document.getElementById("upload-form").submit();
+        if (document.getElementById("file-picker").files.length > 6) {
+            $('#exampleModalCenter').modal('show')
+        } else {
+            document.getElementById("upload-form").submit();
+        }
     };
 </script>
 

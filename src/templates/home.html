@@ -1,31 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid">
+<div class="container">
+    <div class="container-fluid text-center mt-3 mb-3">
+        <!-- <img class="img-fluid p-4" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
+        -->
+        <p class="lead">Agora você pode automaticamente gerar o código App Inventor de wireframes rapidinho a partir dos seus sketches desenhados à mão.</p>
+    </div>
+
     <div class="row mx-auto text-center mt-3 mb-3">
-        <div class="col">
+        <div class="col-md">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-8">
+                    <div class="container">
+                        <img class="img-fluid" src="{{url_for('static', filename='SketchExample.png')}}" alt="" loading="lazy">
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">1</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">Fotografe seus sketchs dos interfaces do seu app e faça o upload.</p>
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            <p class="lead">Agora você pode automaticamente gerar o código App Inventor de wireframes rapidinho a partir dos seus sketches desenhados à mão.</p>
-            <div class="card-deck text-center">
-            <div class="card mb-3 shadow-sm">
-                  <img class="img" src="{{url_for('static', filename='SketchExample.png')}}" alt="" loading="lazy">
-              <div class="card-body">
-                  <h1 style="color: #4A86E8;">1</h1>
-                  <p class="lead">Fotografe seus sketchs dos interfaces do seu app e faça o upload.</p>
-              </div>
+        <div class="col-md">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-8">
+                    <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='AIAExample.png')}}" alt="" loading="lazy">
+                    </div>
+                </div>
+                <div class="col"></div>
             </div>
-            <div class="card mb-3 shadow-sm">
-                  <img class="img" src="{{url_for('static', filename='AIAExample.png')}}" alt="" loading="lazy">
-              <div class="card-body">
-                  <h1 style="color: #4A86E8;">2</h1>
-                  <p class="lead">Faça o download do código .aia para o seu computador e depois importe no App Inventor  para continuar o desenvolvimento do seu app.</p>
-              </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 style="color: #4A86E8;">2</h1>
+                </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="container-fluid">
+                    <p class="text-center">Faça o download do código .aia para o seu computador e depois importe no App Inventor  para continuar o desenvolvimento do seu app.</p>
+                </div>
             </div>
-            <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Vamos lá?</a>
-        </div>
-        <div class="col">
         </div>
     </div>
-  </div>
+    <div class="container-fluid text-center mt-3 mb-3">
+        <a href="/newsketch" class="btn btn-lg btn-block btn-primary" role="button" style="background-color: #4A86E8;">Vamos lá?</a>
+    </div>
+</div>
 {% endblock %}
