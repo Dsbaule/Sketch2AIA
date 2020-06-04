@@ -85,28 +85,28 @@ def getCode(show_error=False):
 
 @app.route("/findcode/", methods=["POST"])
 def findCode():
-    return redirect(url_for("downloadPage", code=request.form['code']))
+    return redirect(url_for("downloadPage", code=request.form['code'].upper()))
 
 
 @app.route("/download/files/<code>")
 def downloadPage(code=None):
     if code is None:
         return redirect(url_for('getCode', show_error=0))
-    else:
-        fileDirectory = os.path.join(APP_ROOT, 'files/')
-        targetDirectory = os.path.join(fileDirectory, code + '/')
 
-        if not os.path.isdir(targetDirectory):
-            return redirect(url_for('getCode', show_error=0))
+    fileDirectory = os.path.join(APP_ROOT, 'files/')
+    targetDirectory = os.path.join(fileDirectory, code + '/')
 
-        imageList=list()
-        for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
-            imageList.append(os.path.basename(image))
+    if not os.path.isdir(targetDirectory):
+        return redirect(url_for('getCode', show_error=0))
 
-        return render_template("download.html", code=code, imageList=imageList)
+    imageList=list()
+    for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
+        imageList.append(os.path.basename(image))
+
+    return render_template("download.html", code=code, imageList=imageList)
 
 
-@app.route("/download/<code>/aia")
+@app.route("/download/files/<code>/aia")
 def getAIA(code=None):
     if code is None:
         return render_template("error.html")

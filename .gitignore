@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /src/files/
+!/src/files/00000
+!/src/files/00001
