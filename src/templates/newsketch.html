@@ -101,7 +101,8 @@
     document.getElementById("file-picker").onchange = function() {
         if (document.getElementById("file-picker").files.length > 6) {
             $('#exampleModalCenter').modal('show')
-        } else {
+            document.getElementById("file-picker").files = []
+        } else if (document.getElementById("file-picker").files.length > 0){
             document.getElementById("upload-form").submit();
         }
     };

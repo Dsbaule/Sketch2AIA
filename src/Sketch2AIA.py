@@ -1,11 +1,15 @@
 import glob, os
-from flask import Flask, request, render_template, send_from_directory, redirect, url_for, send_file
+import time
+
+from flask import Flask, request, render_template, send_from_directory, redirect, url_for, send_file, session
 
 import string, random
+import shutil
 
 __author__ = 'Daniel Baulé'
 
 app = Flask(__name__)
+app.secret_key = 'Sketch2AIAsessionsecretkey'
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,36 +31,6 @@ def home():
 def newsketch():
     return render_template("newsketch.html")
 
-
-@app.route("/download/")
-@app.route("/download/<code>")
-def downloadPage(code=None):
-    if code is None:
-        return render_template("getCode.html")
-    else:
-        fileDirectory = os.path.join(APP_ROOT, 'files/')
-        targetDirectory = os.path.join(fileDirectory, code + '/')
-
-        print(os.path.join(targetDirectory, '*.jpg'))
-
-        imageList=list()
-        for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
-            imageList.append(os.path.basename(image))
-
-        return render_template("download.html", code=code, imageList=imageList)
-
-@app.route("/download/<code>/aia")
-def getAIA(code=None):
-    if code is None:
-        return render_template("error.html")
-
-    fileDirectory = os.path.join(APP_ROOT, 'files/')
-    targetDirectory = os.path.join(fileDirectory, code + '/')
-    try:
-        return send_file(targetDirectory + "meu_projeto.aia", attachment_filename='meu_projeto.aia')
-    except Exception as e:
-        return render_template("error.html")
-
 @app.route("/upload", methods=["POST"])
 def upload():
     fileDirectory = os.path.join(APP_ROOT, 'files/')
@@ -69,6 +43,8 @@ def upload():
             os.mkdir(targetDirectory)
             break
 
+    session['code'] = code
+
     sketchList  =  list()
     for sketch in request.files.getlist("sketches"):
         filename = sketch.filename
@@ -77,6 +53,73 @@ def upload():
         sketch.save(destination)
 
     return render_template("previewSketches.html", code=code, sketchList=sketchList)
+
+
+@app.route("/upload/confirm", methods=["POST"])
+def genAIA():
+    print(request.form)
+    time.sleep(5)
+    return redirect(url_for("downloadPage", code=session.pop('code', None)))
+
+@app.route("/upload/cancel")
+def cancelUpload():
+    code = session.pop('code', None)
+
+    if code is not None:
+        fileDirectory = os.path.join(APP_ROOT, 'files/')
+        targetDirectory = os.path.join(fileDirectory, code + '/')
+
+        try:
+            shutil.rmtree(targetDirectory)
+        except OSError as e:
+            print("Error: %s : %s" % (dir_path, e.strerror))
+
+    return redirect(url_for('home'))
+
+
+@app.route("/download/")
+@app.route("/download/<show_error>")
+def getCode(show_error=False):
+    return render_template("getCode.html", show_error=show_error)
+
+
+@app.route("/findcode/", methods=["POST"])
+def findCode():
+    return redirect(url_for("downloadPage", code=request.form['code']))
+
+
+@app.route("/download/files/<code>")
+def downloadPage(code=None):
+    if code is None:
+        return redirect(url_for('getCode', show_error=0))
+    else:
+        fileDirectory = os.path.join(APP_ROOT, 'files/')
+        targetDirectory = os.path.join(fileDirectory, code + '/')
+
+        if not os.path.isdir(targetDirectory):
+            return redirect(url_for('getCode', show_error=0))
+
+        imageList=list()
+        for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
+            imageList.append(os.path.basename(image))
+
+        return render_template("download.html", code=code, imageList=imageList)
+
+
+@app.route("/download/<code>/aia")
+def getAIA(code=None):
+    if code is None:
+        return render_template("error.html")
+
+    fileDirectory = os.path.join(APP_ROOT, 'files/')
+    targetDirectory = os.path.join(fileDirectory, code + '/')
+    aiaFile = os.path.join(targetDirectory, 'meu_projeto.aia')
+
+    try:
+        return send_file(aiaFile, as_attachment=True, mimetype='application/octet-stream', attachment_filename='teste.aia')
+    except Exception as e:
+        return render_template("error.html")
+
 
 @app.route('/view/<code>/<filename>')
 def viewImage(filename='', code=''):

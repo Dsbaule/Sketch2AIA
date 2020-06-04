@@ -23,26 +23,29 @@
 
 <div class="container">
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Tela Principal</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            {% for i in range(sketchList|length) %}
-            <option value={{sketchList[i]}}>{{i}}</option>
-            {% endfor %}
-        </select>
-    </div>
+    <form id="confirm-form" action="{{ url_for('genAIA') }}" method="POST" enctype="multipart/form-data">
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Deseja usar EscolheLista ou ListaSuspensa?</label>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="telaPrincipal">Tela Principal</label>
+            </div>
+            <select class="custom-select" name="telaPrincipal" id="telaPrincipal">
+                {% for i in range(sketchList|length) %}
+                <option value={{sketchList[i]}}>{{i}}</option>
+                {% endfor %}
+            </select>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected value="1">EscolheLista</option>
-            <option value="2">ListaSuspensa</option>
-        </select>
-    </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="tipoLista">Deseja usar EscolheLista ou ListaSuspensa?</label>
+            </div>
+            <select class="custom-select" name="telaPrincipal" id="tipoLista">
+                <option selected value="1">EscolheLista</option>
+                <option value="2">ListaSuspensa</option>
+            </select>
+        </div>
+    </form>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -61,12 +64,19 @@
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal"
+    <button type="button" id="confirmButton" class="btn btn-lg btn-block btn-primary" data-toggle="modal"
             data-target="#exampleModalCenter" style="background-color: #4A86E8;">
         Finalizar
     </button>
 
-    <a href="/newsketch" class="btn btn-lg btn-block btn-primary mb-3" role="button" style="background-color: #8B0000;">Cancelar</a>
+    <a href="/upload/cancel" class="btn btn-lg btn-block btn-primary mb-3" role="button" style="background-color: #8B0000;">Cancelar</a>
 
 </div>
+
+<script>
+    document.getElementById("confirmButton").onclick = function() {
+        document.getElementById("confirm-form").submit();
+    };
+</script>
+
 {% endblock %}
