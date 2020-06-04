@@ -129,4 +129,3 @@ dmypy.json
 .pyre/
 /src/files/*
 !/src/files/00000/
-!/src/files/00001/

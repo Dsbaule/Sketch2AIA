@@ -14,7 +14,7 @@
             <div class="col-md-4 text-center">
                 <div class="card mb-4 border-light shadow-sm">
                     <h5 class="card-title mt-1" style="color: #4A86E8;"> {{i}} </h5>
-                    <img src="{{url_for('viewImage', code=code, filename=imageList[i])}}" class="card-img-bottom">
+                    <img src="{{url_for('viewPreview', code=code, filename=imageList[i])}}" class="card-img-bottom">
                 </div>
             </div>
         {% endfor %}

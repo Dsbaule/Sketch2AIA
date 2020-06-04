@@ -1,0 +1,5 @@
+classes=10
+train=/home/dsbaule/Desktop/Sketch2AIA/src/AIAGeneration/Darknet/train.txt
+valid=/home/dsbaule/Desktop/Sketch2AIA/src/AIAGeneration/Darknet/val.txt
+names=/home/dsbaule/Desktop/Sketch2AIA/src/AIAGeneration/Darknet/obj.names
+backup=/home/dsbaule/Desktop/Sketch2AIA/src/AIAGeneration/Darknet/backup
