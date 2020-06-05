@@ -129,4 +129,7 @@ dmypy.json
 .pyre/
 /src/files/*
 /src/AIAGeneration/Darknet/NewDatasetYolov3_18000.weights
+
+# Keep this ones
 !/src/files/00000/
+!/src/AIAGeneration/Darknet/libdarknet.so
