@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /src/files/*
+/src/AIAGeneration/Darknet/NewDatasetYolov3_18000.weights
 !/src/files/00000/
