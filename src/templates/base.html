@@ -51,6 +51,32 @@
         </div>
     </nav>
 {% block content %} {% endblock %}
+<footer class="footer mt-5" style="background-color: #4A86E8;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md"></div>
+            <div class="col-md-5 text-left text-center my-auto">
+                <div class="my-2">
+                    <a href="sobre.jsp" class="card-link text-white">About &nbsp; &nbsp; &nbsp;<b>|</b></a>
+                    <a href="politica_de_privacidade.jsp" class="card-link text-white">Privacy Policy &nbsp; &nbsp; &nbsp;<b>|</b></a>
+                    <a href="termos_de_servico.jsp" class="card-link text-white">Terms of Service</a>
+                </div>
+            </div>
+            <div class="col col-md-5 text-center my-2">
+                <img class="center-block img-fluid" src="{{url_for('static', filename='Logos/ComputacaoNaEscolaBranco.png')}}" width="30%"> 
+                <img class="center-block img-fluid" src="{{url_for('static', filename='Logos/GQS.png')}}" width="20%">
+                <img class="center-block img-fluid" src="{{url_for('static', filename='Logos/Incod.png')}}" width="20%">
+                <img class="center-block img-fluid" src="{{url_for('static', filename='Logos/ine.png')}}" width="10%">
+                <img class="center-block img-fluid" src="{{url_for('static', filename='Logos/UFSC.png')}}" width="10%">
+            </div>
+            <div class="col-md"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+        </div>
+    </div>
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
