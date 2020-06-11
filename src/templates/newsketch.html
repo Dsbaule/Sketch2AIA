@@ -20,7 +20,8 @@
             </div>
             <div class="row">
                 <div class="container-fluid">
-                    <a href="/newsketch" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;">Como desenhar Sketches</a>
+                    <a href="/newsketch" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;" data-toggle="modal"
+                    data-target="#modalComoDesenharSketches">Como desenhar Sketches</a>
                 </div>
             </div>
         </div>
@@ -70,7 +71,90 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Como desenhar Sketches-->
+<div class="modal fade" id="modalComoDesenharSketches" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Como desenhar sketches</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ol>
+                <li>Use papel branco liso (sem linhas etc.)</li>
+                <li>Use lápis/caneta preta/sharpie preto ou azul (Não use cores para colorir o sketch)</li>
+                <li>Desenhe somente a tela em si - não coloque desenho de um dispositivo móvel (celular) ao redor:</li>
+                <div class="row justify-content-center my-2">
+                    <div class="col">
+                        <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='HowTo/SketchWithPhoneBorder.png')}}">
+                    </div>
+                    <div class="col">
+                        <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='HowTo/SketchWithoutPhoneBorder.png')}}">
+                    </div>
+                </div>
+                <li>Não faça anotações nem indique o fluxo entre telas - só desenhe cada tela separada</li>
+                <li>Desenhe rapidinho - não precisa cuidar demais (p.ex. linhas podem estar torto etc.)</li>
+                <li>Utilize os seguintes exemplos para desenhar cada componente de interface:</li>
+                <div class="container-fluid">
+                    <div class="text-center mt-2">
+                        <text>Botão: Retângulo com texto no centro</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Botao.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Legenda: Texto ou placeholders</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Legenda.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Caixa de Texto: Retângulo vazio ou com texto na esquerda</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/CaixaDeTexto.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Imagem: Retangulo com linhas diagonais</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Imagem.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Escolhe Lista: Retangulo com uma seta na direita</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/EscolheLista.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Switch: Basta desenhar o componente</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Switch.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Caixa de Seleção: Quadrado vazio com texto ao lado</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/CaixaDeSelecao.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Deslizador: Basta desenhar o componente</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Deslizadores.png')}}">
+                    <div class="text-center mt-2">
+                        <text>Mapa: Basta desenhar um mapa</text>
+                    </div>
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/Mapas.png')}}">
+                </div>
+                <li>Não desenhe a barra de notificação ou botões do sistema:</li>
+                <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/BarraNotificacao.png')}}">
+                <li>Imagens e textos podem ser substituídos por placeholders:</li>
+                <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/PlaceHolders.png')}}">
+                <li>Não desenhe componentes sobrepostos ou imagens de fundo:</li>
+                <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/ComponentesSobrepostos.png')}}">
+                <li>Pronto, agora você tem um Sketch do seu aplicativo:</li>
+                <div class="container mx-auto text-center mt-2">
+                    <img class="img-fluid mx-auto my-auto" src="{{url_for('static', filename='ExemplosComponentes/CompleteSketch.png')}}">
+                </div>  
+            </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Modal Erro -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
