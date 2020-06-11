@@ -5,7 +5,7 @@ import string, random
 import shutil
 from PIL import Image, ExifTags
 
-#from src.AIAGeneration import Detection
+from src.AIAGeneration import Detection
 
 __author__ = 'Daniel Baulé'
 
