@@ -77,6 +77,7 @@ def upload():
                 elif exif[orientation] == 8:
                     image = image.rotate(90, expand=True)
 
+        image = image.resize((720,1280))
         filename = sketch.filename
         sketchList.append(filename)
         destination = os.path.join(originalImageDirectory, filename)
