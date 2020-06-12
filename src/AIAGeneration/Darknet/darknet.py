@@ -315,6 +315,19 @@ netMain = None
 metaMain = None
 altNames = None
 
+colorDict = {
+    'Screen'        : (230,25,75),
+    'Label'         : (60,180,75),
+    'Button'        : (255,255,25),
+    'TextBox'       : (0,130,200),
+    'CheckBox'      : (245,130,48),
+    'Image'         : (145,30,180),
+    'Switch'        : (70,240,240),
+    'Slider'        : (240,50,230),
+    'Map'           : (210,245,60),
+    'ListPicker'    : (250,190,212)
+}
+
 def performDetect(imagePath="data/dog.jpg", thresh= 0.25, configPath = "./cfg/yolov4.cfg", weightPath = "yolov4.weights", metaPath= "./cfg/coco.data", showImage= True, makeImageOnly = False, initOnly= False):
     """
     Convenience function to handle the detection and returns of objects.
@@ -440,7 +453,7 @@ def performDetect(imagePath="data/dog.jpg", thresh= 0.25, configPath = "./cfg/yo
                 rr3, cc3 = draw.polygon_perimeter([x[1] - 1 for x in boundingBox], [x[0] for x in boundingBox], shape= shape)
                 rr4, cc4 = draw.polygon_perimeter([x[1] for x in boundingBox], [x[0] + 1 for x in boundingBox], shape= shape)
                 rr5, cc5 = draw.polygon_perimeter([x[1] for x in boundingBox], [x[0] - 1 for x in boundingBox], shape= shape)
-                boxColor = (int(255 * (1 - (confidence ** 2))), int(255 * (confidence ** 2)), 0)
+                boxColor = colorDict[label]
                 draw.set_color(image, (rr, cc), boxColor, alpha= 0.8)
                 draw.set_color(image, (rr2, cc2), boxColor, alpha= 0.8)
                 draw.set_color(image, (rr3, cc3), boxColor, alpha= 0.8)
