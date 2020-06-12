@@ -64,7 +64,7 @@ def upload():
 
         if image._getexif() is not None:
             exif = dict(image._getexif().items())
-        if exif is not None:
+            
             if orientation in exif:
                 if exif[orientation] == 3:
                     image = image.rotate(180, expand=True)
