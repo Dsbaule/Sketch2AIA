@@ -64,14 +64,14 @@ def upload():
 
         if image._getexif() is not None:
             exif = dict(image._getexif().items())
-
-        if orientation in exif:
-            if exif[orientation] == 3:
-                image = image.rotate(180, expand=True)
-            elif exif[orientation] == 6:
-                image = image.rotate(270, expand=True)
-            elif exif[orientation] == 8:
-                image = image.rotate(90, expand=True)
+        if exif is not None:
+            if orientation in exif:
+                if exif[orientation] == 3:
+                    image = image.rotate(180, expand=True)
+                elif exif[orientation] == 6:
+                    image = image.rotate(270, expand=True)
+                elif exif[orientation] == 8:
+                    image = image.rotate(90, expand=True)
 
         filename = sketch.filename
         sketchList.append(filename)
