@@ -5,6 +5,8 @@ import string, random
 import shutil
 from PIL import Image, ExifTags
 
+import threading
+
 from src.AIAGeneration import Detection
 
 __author__ = 'Daniel Baulé'
@@ -13,6 +15,8 @@ app = Flask(__name__)
 app.secret_key = 'Sketch2AIAsessionsecretkey'
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+detector_lock = threading.RLock()
 
 def genCode(size=5):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(size))
@@ -89,7 +93,9 @@ def genAIA():
     mainScreen = int(request.form['telaPrincipal'])
     listType = int(request.form['tipoLista'])
 
+    detector_lock.acquire()
     Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName='MyProject')
+    detector_lock.release()
 
     return redirect(url_for("downloadPage", code=session.pop('code', None)))
 

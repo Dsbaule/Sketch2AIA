@@ -91,10 +91,22 @@ def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject'):
                 componentList.append(Component(component[0], component[1], component[2][0], component[2][1], component[2][2], component[2][3]))
 
         # Remove overlaps
-        for i in range(len(componentList) - 1):
-            for j in range(i + 1, len(componentList)):
+        i = 0
+        while i < (len(componentList) - 1):
+            j = i + 1
+
+            while j < len(componentList):
                 if componentList[i].overlaps(componentList[j]):
-                    componentList.pop(i if (componentList[i].confidence < componentList[j].confidence) else j)
+                    if componentList[i].confidence < componentList[j].confidence:
+                        componentList.pop(i)
+                        i -= 1
+                        break
+                    else:
+                        componentList.pop(j)
+                else:
+                    j += 1    
+                        
+            i += 1
 
 
         # Check what components are aligned in each axis
