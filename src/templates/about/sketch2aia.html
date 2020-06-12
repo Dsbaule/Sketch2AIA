@@ -1,0 +1,22 @@
+{% extends "about/base.html" %}
+{% block about %}
+    <img class="img-fluid p-3 my-4 mx-auto" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
+    <div class="container-fluid text-left p-3">
+        <h3>O que é o Sketch2aia?</h3>
+        <p class='my-4'>Sketch2aia é uma ferramenta, que automaticamente gera um protótipo de wireframe de um app a partir de uma imagem de um sketch. Como resultado apresenta o arquivo .aia do código de um projeto App Inventor.</p>
+        <p class='my-4'>Ela pode ser utilizada por qualquer pessoa para desenvolver o seu app com App Inventor e também no ensino de computação.</p>
+
+        <h3>Como surgiu?</h3>
+        <p class='my-4'>Sketch2aia é resultado de pesquisa do GQS - Grupo de Qualidade de Software e da iniciativa Computação na Escola do INCoD/INE/UFSC que visa facilitar tanto o design de apps quanto o ensino de computação.</p>
+        <p class='my-4'>Conheça mais sobre o <a href="http://www.gqs.ufsc.br/">GQS</a> e a iniciativa da <a href="http://www.computacaonaescola.ufsc.br/">Computação na Escola</a>.</p>
+
+        <h3>Pesquisadores:</h3>
+        <p class='my-4'>
+            Prof. Dr. rer. nat. Christiane Gresse von Wangenheim, PMP <br>
+            Prof. Dr. Jean Carlo Rossa Hauck <br>
+            Prof. Dr. rer. nat. Aldo von Wangenheim <br>
+            Daniel Baulé <br>
+            M. Nathalie F. Ferreira
+        </p>
+    </div>
+{% endblock %}

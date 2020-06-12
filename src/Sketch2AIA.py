@@ -18,15 +18,15 @@ def genCode(size=5):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(size))
 
 
-@app.route("/base")
-def index():
-    return render_template("base.html")
-
-
 @app.route("/")
+def index():
+    return redirect(url_for('home'))
+
+
 @app.route("/home")
 def home():
     return render_template("home.html")
+
 
 @app.route("/newsketch")
 def newsketch():
@@ -163,6 +163,18 @@ def viewImage(filename='', code=''):
 @app.route('/view/preview/<code>/<filename>')
 def viewPreview(filename='', code=''):
     return send_from_directory("files/" + code + '/preview', filename)
+
+@app.route('/about/')
+@app.route('/about/<page>')
+def about(page='sketch2aia'):
+    if page == 'sketch2aia':
+        return render_template("about/sketch2aia.html")
+    elif page == 'privacy-policy':
+        return render_template("about/privacy-policy.html")
+    elif page == 'terms-of-service':
+        return render_template("about/terms-of-service.html")
+
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":

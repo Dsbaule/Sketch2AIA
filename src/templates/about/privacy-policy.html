@@ -1,0 +1,16 @@
+{% extends "about/base.html" %}
+{% block about %}
+    <img class="img-fluid p-3 my-4 mx-auto" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
+    <div class="container-fluid text-left p-3">
+        <h3>Política de privacidade</h3>
+        <p class='my-4'>
+            Nós levamos sua privacidade muito a sério. Dentro do contexto do Sketch2aia, suas informações pessoais não são compartilhadas ou vendidas.
+            Nós também coletamos e analisamos informações sobre o uso do site. As informações coletadas são utilizadas apenas para os seguintes propósitos: 
+            avaliar o uso e a qualidade da ferramenta em termos de corretude e desempenho, a fim da sua melhoria, por meio de novas pesquisas e investigar abuso do serviço.
+        </p>
+        <p class='my-4'>
+            Reservamo-nos o direito de compartilhar informações para investigar, prevenir ou tomar medidas quanto a atividades ilegais, suspeita de fraude, 
+            violações dos Termos de Serviço, situações que envolvam ameaças potenciais à segurança física de qualquer pessoa, ou conforme exigido por lei.
+        </p>
+    </div>
+{% endblock %}

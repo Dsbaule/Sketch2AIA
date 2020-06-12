@@ -41,19 +41,19 @@
                 <ri class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sobre
+                        <img class="img" height="20" width="auto" src="{{url_for('static', filename='languageIcon.png')}}" alt=""
+                        loading="lazy">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/about/sketch2aia">Sketch2AIA</a>
-                        <a class="dropdown-item" href="/about/gqs">GQS</a>
-                        <a class="dropdown-item" href="/about/computacao_na_escola">Computação na Escola</a>
+                        <a class="dropdown-item" href="/home">Português</a>
+                        <a class="dropdown-item" href="/home">English</a>
                     </div>
                 </ri>
             </ul>
         </div>
     </nav>
 
-    <main role="main" class="flex-shrink-0">
+    <main role="main" class="flex-shrink-0 my-3">
         {% block content %} {% endblock %}
     </main>
 
@@ -63,9 +63,9 @@
                 <div class="col-md"></div>
                 <div class="col-md-5 text-left text-center my-auto">
                     <div class="my-2">
-                        <a href="/about/sketch2aia" class="card-link text-white">About &nbsp; &nbsp; &nbsp;<b>|</b></a>
-                        <a href="/about/privacy-policy" class="card-link text-white">Privacy Policy &nbsp; &nbsp; &nbsp;<b>|</b></a>
-                        <a href="/about/terms-of-service" class="card-link text-white">Terms of Service</a>
+                        <a href="/about/sketch2aia" class="card-link text-white">Sobre &nbsp; &nbsp; &nbsp;<b>|</b></a>
+                        <a href="/about/privacy-policy" class="card-link text-white">Política de Privacidade &nbsp; &nbsp; &nbsp;<b>|</b></a>
+                        <a href="/about/terms-of-service" class="card-link text-white">Termos de Serviço</a>
                     </div>
                 </div>
                 <div class="col col-md-5 text-center my-2">

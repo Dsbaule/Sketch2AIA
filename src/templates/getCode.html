@@ -5,8 +5,8 @@
         <div class="col-md">
         </div>
         <div class="col-md-8">
-            <img class="img-fluid p-3" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
-            <p class="lead">Já tem um código para seu Sketch? Digite abaixo:</p>
+            <img class="img-fluid p-3 my-4" src="{{url_for('static', filename='Sketch2AIA_Logo_Blue.png')}}" alt="" loading="lazy">
+            <p class="lead my-4">Já tem um código para seu Sketch? Digite abaixo:</p>
 
             <form id="code-form" action="{{ url_for('findCode') }}" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
