@@ -253,6 +253,6 @@ class Spinner(Component):
 
 class ListPicker(TextComponent):
     def __init__(self, Name, AlignHorizontal=1, AlignVertical=1, Height=-1, Width=-1, Text="ListPicker"):
-        Type = "VerticalArrangement"
+        Type = "ListPicker"
         Version = "9"
         super().__init__(Name, Type, Version, AlignHorizontal, AlignVertical, Height, Width, Text)

@@ -14,7 +14,7 @@ weightPath = os.path.join(DARKNET_ROOT, 'NewDatasetYolov3_18000.weights')
 metaPath = os.path.join(DARKNET_ROOT, 'obj.data')
 
 
-def generateArrangement(alignment: tuple, curProj: AIAProject.Project, depth=0) -> AIAProject.Arrangement:
+def generateArrangement(alignment: tuple, curProj: AIAProject.Project, depth=0, listType=0) -> AIAProject.Arrangement:
     defaultNames = curProj.defaultNames
     countDict = curProj.countDict
 
@@ -34,7 +34,7 @@ def generateArrangement(alignment: tuple, curProj: AIAProject.Project, depth=0) 
 
     for curComponent in components:
         if type(curComponent) == tuple:
-            curArrangement.addComponent(generateArrangement(curComponent, curProj, depth + 1))
+            curArrangement.addComponent(generateArrangement(curComponent, curProj, depth + 1, listType))
         elif curComponent.label == 'Label':
             curArrangement.addComponent(AIAProject.Label(Name=(defaultNames['Label'] + str(countDict['Label']))))
         elif curComponent.label == 'Button':
@@ -53,14 +53,16 @@ def generateArrangement(alignment: tuple, curProj: AIAProject.Project, depth=0) 
         elif curComponent.label == 'Map':
             curArrangement.addComponent(AIAProject.Map(Name=(defaultNames['Map'] + str(countDict['Map']))))
         elif curComponent.label == 'ListPicker':
-            curArrangement.addComponent(
-                AIAProject.ListPicker(Name=(defaultNames['ListPicker'] + str(countDict['ListPicker']))))
-        elif curComponent.label == 'Spinner':
-            curArrangement.addComponent(AIAProject.Spinner(Name=(defaultNames['Spinner'] + str(countDict['Spinner']))))
+            if listType == 0:
+                curArrangement.addComponent(
+                    AIAProject.ListPicker(Name=(defaultNames['ListPicker'] + str(countDict['ListPicker']))))
+            else:
+                curArrangement.addComponent(
+                    AIAProject.Spinner(Name=(defaultNames['Spinner'] + str(countDict['Spinner']))))
     return curArrangement
 
 
-def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject'):
+def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject',listType=0):
 
     project = AIAProject.Project(AppName=projectName)
 
@@ -127,7 +129,7 @@ def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject'):
         project.addScreen(screen)
         if sketchIndex == mainScreen:
             project.main = 'Screen' + str(sketchIndex + 1)
-        screen.addComponent(generateArrangement(alignedComponents, project))
+        screen.addComponent(generateArrangement(alignedComponents, project, listType=listType))
 
     print('\nJSON:\n')
     import json

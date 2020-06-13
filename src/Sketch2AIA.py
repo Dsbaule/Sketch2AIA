@@ -107,7 +107,7 @@ def genAIA():
     print('Generating project: |' + projectName + '| with main screen ' + str(mainScreen))
 
     detector_lock.acquire()
-    Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName=projectName)
+    Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName=projectName, listType=listType)
     detector_lock.release()
 
     return redirect(url_for("downloadPage", code=session.pop('code', None)))
