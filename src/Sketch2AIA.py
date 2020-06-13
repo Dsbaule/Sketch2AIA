@@ -18,6 +18,9 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 detector_lock = threading.RLock()
 
+# Char array for valid filenames
+valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+
 def genCode(size=5):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(size))
 
@@ -94,6 +97,14 @@ def genAIA():
     mainScreen = int(request.form['telaPrincipal'])
     listType = int(request.form['tipoLista'])
     projectName = request.form['nomeProjeto']
+
+    projectName = ''.join(c for c in projectName if c in valid_chars)
+    projectName = projectName.replace(' ','_')
+
+    if len(projectName) == 0:
+        projectName = 'Meu projeto'
+
+    print('Generating project: |' + projectName + '| with main screen ' + str(mainScreen))
 
     detector_lock.acquire()
     Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName=projectName)
