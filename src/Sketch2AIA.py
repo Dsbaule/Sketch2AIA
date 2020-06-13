@@ -93,9 +93,10 @@ def upload():
 def genAIA():
     mainScreen = int(request.form['telaPrincipal'])
     listType = int(request.form['tipoLista'])
+    projectName = request.form['nomeProjeto']
 
     detector_lock.acquire()
-    Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName='MyProject')
+    Detection.detect(projectPath=session['dir'], sketchList=session['sketchList'], mainScreen = mainScreen, projectName=projectName)
     detector_lock.release()
 
     return redirect(url_for("downloadPage", code=session.pop('code', None)))
