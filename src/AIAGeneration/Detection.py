@@ -37,28 +37,38 @@ def generateArrangement(alignment: tuple, curProj: AIAProject.Project, depth=0, 
             curArrangement.addComponent(generateArrangement(curComponent, curProj, depth + 1, listType))
         elif curComponent.label == 'Label':
             curArrangement.addComponent(AIAProject.Label(Name=(defaultNames['Label'] + str(countDict['Label']))))
+            countDict['Label'] += 1
         elif curComponent.label == 'Button':
             curArrangement.addComponent(AIAProject.Button(Name=(defaultNames['Button'] + str(countDict['Button']))))
+            countDict['Button'] += 1
         elif curComponent.label == 'TextBox':
             curArrangement.addComponent(AIAProject.TextBox(Name=(defaultNames['TextBox'] + str(countDict['TextBox']))))
+            countDict['TextBox'] += 1
         elif curComponent.label == 'CheckBox':
             curArrangement.addComponent(
                 AIAProject.CheckBox(Name=(defaultNames['CheckBox'] + str(countDict['CheckBox']))))
+            countDict['CheckBox'] += 1
         elif curComponent.label == 'Image':
             curArrangement.addComponent(AIAProject.Image(Name=(defaultNames['Image'] + str(countDict['Image']))))
+            countDict['Image'] += 1
         elif curComponent.label == 'Switch':
             curArrangement.addComponent(AIAProject.Switch(Name=(defaultNames['Switch'] + str(countDict['Switch']))))
+            countDict['Switch'] += 1
         elif curComponent.label == 'Slider':
             curArrangement.addComponent(AIAProject.Slider(Name=(defaultNames['Slider'] + str(countDict['Slider']))))
+            countDict['Slider'] += 1
         elif curComponent.label == 'Map':
             curArrangement.addComponent(AIAProject.Map(Name=(defaultNames['Map'] + str(countDict['Map']))))
+            countDict['Map'] += 1
         elif curComponent.label == 'ListPicker':
             if listType == 0:
                 curArrangement.addComponent(
                     AIAProject.ListPicker(Name=(defaultNames['ListPicker'] + str(countDict['ListPicker']))))
+                countDict['ListPicker'] += 1
             else:
                 curArrangement.addComponent(
-                    AIAProject.Spinner(Name=(defaultNames['Spinner'] + str(countDict['Spinner']))))
+                    AIAProject.Spinner(Name=(defaultNames['Spinner'] + str(countDict['ListPicker']))))
+                countDict['Spinner'] += 1
     return curArrangement
 
 
