@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="container-fluid">
                     <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" hidden="hidden">
-                        <input id="file-picker" type="file" name="sketches" accept=".jpg" multiple>
+                        <input id="file-picker" type="file" name="sketches" accept=".jpg, .jpeg" multiple>
                     </form>
                     <button type="button" class="btn btn-lg btn-primary" id="upload_button" style="background-color: #4A86E8;">Enviar Fotos</a>
                 </div>
@@ -154,7 +154,7 @@
     </div>
 </div>
 
-<!-- Modal Erro -->
+<!-- Modal Erro Numero de Arquivos -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -177,6 +177,29 @@
   </div>
 </div>
 
+<!-- Modal Erro Formato de Arquivos -->
+<div class="modal fade" id="ModalFormato" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Arquivo Inválido!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <img class="img mx-auto d-block mb-4" height="300" width="auto" src="{{url_for('static', filename='RobotError.png')}}" alt="" loading="lazy">
+                <p class="text-center justify-content-center">Apenas arquivos em formato JPEG (.jpg ou .jpeg).</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="background-color: #4A86E8;" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+</div>
+
 <script>
     document.getElementById("upload_button").onclick = function() {
         document.getElementById("file-picker").click();
@@ -187,6 +210,20 @@
             $('#exampleModalCenter').modal('show')
             document.getElementById("file-picker").files = []
         } else if (document.getElementById("file-picker").files.length > 0){
+            var sel_files  = document.getElementById("file-picker").files;
+            var len = sel_files.length;
+    
+            for (var i = 0; i < len; i++) {
+
+                var file = sel_files[i];
+            
+                if (!((file.type==='image/jpeg') || (file.type==='image/jpg'))){
+                    $('#ModalFormato').modal('show');
+                    document.getElementById("file-picker").files = [];
+                    return;
+                }
+            }
+
             document.getElementById("upload-form").submit();
         }
     };
