@@ -153,7 +153,9 @@ def downloadPage(code=None):
         return redirect(url_for('getCode', show_error=0))
 
     imageList=list()
-    for image in glob.glob(os.path.join(targetDirectory, '*.jp?g')):
+    for image in glob.glob(os.path.join(targetDirectory, '*.jpg')):
+        imageList.append(os.path.basename(image))
+    for image in glob.glob(os.path.join(targetDirectory, '*.jpeg')):
         imageList.append(os.path.basename(image))
 
     return render_template("download.html", code=code, imageList=imageList)
