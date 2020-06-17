@@ -41,6 +41,16 @@ def newsketch():
 
 @app.route("/upload", methods=["POST"])
 def upload():
+    # First check if number of images <= 6
+    if len(request.files.getlist("sketches")) > 6:
+        return render_template('error.html')
+
+    # First check if all images are jpgs
+    for sketch in request.files.getlist("sketches"):
+        (_, extension) = os.path.splitext(sketch.filename)
+        if extension.lower() not in ['.jpg','.jpeg']:
+            return render_template('error.html')
+
     fileDirectory = os.path.join(APP_ROOT, 'files/')
     code = ""
 
@@ -82,7 +92,8 @@ def upload():
 
         image = image.resize((720,1280))
 
-        filename = os.path.splitext(sketch.filename)[0]
+        (filename, _) = os.path.splitext(sketch.filename)
+
         filename = ''.join(c for c in filename if c in valid_chars)
         filename = filename.replace(' ','_')
         filename += '.jpg'
