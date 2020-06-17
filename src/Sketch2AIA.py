@@ -7,7 +7,7 @@ from PIL import Image, ExifTags
 
 import threading
 
-#from src.AIAGeneration import Detection
+from src.AIAGeneration import Detection
 
 __author__ = 'Daniel Baulé'
 
