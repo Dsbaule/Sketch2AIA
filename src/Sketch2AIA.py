@@ -81,7 +81,12 @@ def upload():
                     image = image.rotate(90, expand=True)
 
         image = image.resize((720,1280))
-        filename = sketch.filename
+
+        filename = os.path.splitext(sketch.filename)[0]
+        filename = ''.join(c for c in filename if c in valid_chars)
+        filename = filename.replace(' ','_')
+        filename += '.jpg'
+
         sketchList.append(filename)
         destination = os.path.join(originalImageDirectory, filename)
         image.save(destination)
