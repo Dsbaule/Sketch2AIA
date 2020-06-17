@@ -7,7 +7,7 @@ from PIL import Image, ExifTags
 
 import threading
 
-from src.AIAGeneration import Detection
+#from src.AIAGeneration import Detection
 
 __author__ = 'Daniel Baulé'
 
@@ -33,6 +33,11 @@ def index():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+
+@app.route("/howto")
+def howto():
+    return render_template("howto.html")
 
 
 @app.route("/newsketch")

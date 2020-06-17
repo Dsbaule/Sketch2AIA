@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mx-auto text-center mt-3 mb-3">
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='HowTo1.png')}}" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">1</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">No celular, envie as fotos de seu Sketch para geração do arquivo .aia:</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <a href="/newsketch" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;">Novo Sketch</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='HowTo2.png')}}" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">2</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">No computador, use o código informado para baixar o arquivo .aia:</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <a href="/download" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;">Download aia</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="row">
+                <div class="container">
+                    <img class="img-fluid" src="{{url_for('static', filename='HowTo3.png')}}" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <h1 class="text-center" style="color: #4A86E8;">3</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <p class="text-center justify-content-center">Importe o arquivo no App Inventor para continuar o desenvolvimento:</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <a href="http://ai2.appinventor.mit.edu/" class="btn btn-lg btn-primary" role="button" style="background-color: #4A86E8;">App Inventor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
