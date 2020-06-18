@@ -123,7 +123,7 @@ def genAIA():
     projectName = projectName.replace(' ','_')
 
     if len(projectName) == 0:
-        projectName = 'Meu projeto'
+        projectName = 'MeuProjeto'
 
     print('Generating project: |' + projectName + '| with main screen ' + str(mainScreen))
 
