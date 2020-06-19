@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="container-fluid">
                     <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" hidden="hidden">
-                        <input id="file-picker" type="file" name="sketches" accept=".jpg, .jpeg" multiple>
+                        <input id="file-picker" type="file" name="sketches" accept="image/*" multiple>
                     </form>
                     <button type="button" class="btn btn-lg btn-primary" id="upload_button" style="background-color: #4A86E8;">Enviar Fotos</a>
                 </div>
@@ -217,7 +217,7 @@
 
                 var file = sel_files[i];
             
-                if (!((file.type==='image/jpeg') || (file.type==='image/jpg'))){
+                if (!(file.type.split('/')[0] === 'image')){
                     $('#ModalFormato').modal('show');
                     document.getElementById("file-picker").files = [];
                     return;

@@ -50,11 +50,11 @@ def upload():
     if len(request.files.getlist("sketches")) > 6:
         return render_template('error.html')
 
-    # First check if all images are jpgs
-    for sketch in request.files.getlist("sketches"):
-        (_, extension) = os.path.splitext(sketch.filename)
-        if extension.lower() not in ['.jpg','.jpeg']:
-            return render_template('error.html')
+    # # First check if all images are jpgs
+    # for sketch in request.files.getlist("sketches"):
+    #     (_, extension) = os.path.splitext(sketch.filename)
+    #     if extension.lower() not in ['.jpg','.jpeg']:
+    #         return render_template('error.html')
 
     fileDirectory = os.path.join(APP_ROOT, 'files/')
     code = ""
@@ -79,23 +79,31 @@ def upload():
 
     for sketch in request.files.getlist("sketches"):
         image = Image.open(sketch.stream)
+        image.verify()
+        image = Image.open(sketch.stream)
 
         for orientation in ExifTags.TAGS.keys():
             if ExifTags.TAGS[orientation] == 'Orientation':
                 break
 
-        if image._getexif() is not None:
-            exif = dict(image._getexif().items())
-            
-            if orientation in exif:
-                if exif[orientation] == 3:
-                    image = image.rotate(180, expand=True)
-                elif exif[orientation] == 6:
-                    image = image.rotate(270, expand=True)
-                elif exif[orientation] == 8:
-                    image = image.rotate(90, expand=True)
+        try:
+            if image._getexif() is not None:
+                exif = dict(image._getexif().items())
+                
+                if orientation in exif:
+                    if exif[orientation] == 3:
+                        image = image.rotate(180, expand=True)
+                    elif exif[orientation] == 6:
+                        image = image.rotate(270, expand=True)
+                    elif exif[orientation] == 8:
+                        image = image.rotate(90, expand=True)
+        except AttributeError:
+            print('No exif')
+        except:
+            return render_template('error.html')
 
         image = image.resize((720,1280))
+        image = image.convert('RGB')
 
         (filename, _) = os.path.splitext(sketch.filename)
 
