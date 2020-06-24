@@ -19,7 +19,7 @@ def convertJson(originalJson):
 def saveFile(projectPath: str, project: AIAProject.Project):
     savePath = os.path.join(projectPath, project.AppName + '.aia')
 
-    with ZipFile(savePath, 'x') as myzip:
+    with ZipFile(savePath, 'w') as myzip:
         with myzip.open("youngandroidproject/project.properties", 'w') as project_properties_file:
             project_properties_file.write(bytes(project.genProperties(), 'utf-8'))
         for Screen in project.Screens:
