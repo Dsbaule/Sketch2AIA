@@ -27,12 +27,13 @@ def genCode(size=5):
 
 @app.route("/")
 def index():
-    return redirect(url_for('home'))
+    return redirect(url_for('howto'))
 
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return redirect(url_for('howto'))
+    #return render_template("home.html")
 
 
 @app.route("/howto")
