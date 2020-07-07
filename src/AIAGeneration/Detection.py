@@ -6,6 +6,8 @@ from src.AIAGeneration.AIA import AIAProject, GenerateAIA
 import os
 from PIL import Image
 
+from src.AIAGeneration.Draw import save_preview
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 DARKNET_ROOT = os.path.join(APP_ROOT, 'Darknet')
 
@@ -78,25 +80,27 @@ def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject',listTy
 
     for sketchIndex in range(len(sketchList)):
 
+        imagePath   = os.path.join(projectPath, 'original', sketchList[sketchIndex])
+        previewPath = os.path.join(projectPath, 'preview', sketchList[sketchIndex])
+
         result = darknet.performDetect(
-            imagePath=os.path.join(projectPath, 'original', sketchList[sketchIndex]),
+            imagePath=imagePath,
             thresh=0.25,
             configPath=configPath,
             weightPath=weightPath,
             metaPath=metaPath,
-            showImage=True,
+            showImage=False,
             makeImageOnly=True,
             initOnly=False)
 
-        previewPath = os.path.join(projectPath, 'preview', sketchList[sketchIndex])
+        '''
         Image.fromarray(result['image']).save(previewPath)
-
         result = result['detections']
+        '''
 
         componentList = list()
 
         for component in result:
-            print(component[0])
             if component[0] == 'Screen':
                 screen = Component(component[0], component[1], component[2][0], component[2][1], component[2][2], component[2][3])
             else:
@@ -120,12 +124,8 @@ def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject',listTy
                         
             i += 1
 
-
-        # Check what components are aligned in each axis
-        componentList.sort(key=lambda x: x.y1)
-        for i in range(len(componentList)):
-            print(componentList[i].label + '(' + str(componentList[i].x1) + ',' + str(componentList[i].y1) + ')')
-            componentList[i].getInLineComponents(componentList[i+1:])
+        # Generate and save preview
+        save_preview(imagePath, componentList + [screen], previewPath)
 
         #print(str(Alignment.align(componentList)))
 
@@ -140,10 +140,6 @@ def detect(projectPath, sketchList, mainScreen=0, projectName='MyProject',listTy
         if sketchIndex == mainScreen:
             project.main = 'Screen' + str(sketchIndex + 1)
         screen.addComponent(generateArrangement(alignedComponents, project, listType=listType))
-
-    print('\nJSON:\n')
-    import json
-    print(json.dumps(screen.toDict()))
 
     GenerateAIA.saveFile(projectPath, project)
 
